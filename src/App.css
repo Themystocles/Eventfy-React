@@ -1,38 +1,61 @@
-.App {
-  text-align: center;
+/* App.css ou global.css */
+
+/* Garantir que o layout ocupe toda a altura da tela */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 100vh;
+  /* Garantir que o body ocupe a altura inteira da tela */
+}
+
+/* Estilo do header fixo */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  height: 4rem;
+  /* Ajuste a altura do seu header */
+  background-color: #333;
+  /* Altere conforme necessário */
   color: white;
+  padding: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+/* Espaçamento do conteúdo principal (evitar sobreposição do header) */
+main {
+  padding-top: 0rem;
+  /* A altura do header */
+  padding-bottom: 0rem;
+  /* Garante que o footer não fique sobreposto */
+
+  /* Espaçamento lateral */
+  padding-left: 0.0rem;
+  padding-right: 0.0rem;
+
+  /* Largura e centralização */
+  max-width: 100%;
+
+  /* Limita a largura máxima do conteúdo */
+  width: 100%;
+  /* Garante que a largura ocupe 100% até o máximo */
+  margin-left: auto;
+  /* Centraliza horizontalmente */
+  margin-right: auto;
+  /* Centraliza horizontalmente */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Estilo do footer */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
 }
