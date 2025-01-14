@@ -2,6 +2,8 @@ import axios from "axios";
 import { GetItemProps } from "../models/GetItemProps";
 import { useEffect, useState } from "react";
 
+
+
 const ItemFetcher = <T extends object>({ url, id, renderItem, title }: GetItemProps<T>) => {
     const [item, setItem] = useState<T | null>(null);
     const [loading, setLoading] = useState(true);
@@ -62,6 +64,8 @@ const ItemFetcher = <T extends object>({ url, id, renderItem, title }: GetItemPr
                     >
                         Voltar
                     </button>
+                    <br />
+
                 </div>
             </div>
         </div>

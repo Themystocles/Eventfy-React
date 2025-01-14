@@ -1,0 +1,42 @@
+/* ListFetcherServiceStyles.css */
+
+/* Garantir que o contêiner principal ocupe 100% da altura da tela */
+.container {
+    @apply min-h-screen bg-gray-900 text-white flex flex-col justify-center items-center py-12;
+}
+
+/* Ajuste no título */
+.title {
+    @apply text-4xl font-semibold text-center text-gray-200 mb-12;
+}
+
+.title-highlight {
+    @apply text-indigo-400;
+}
+
+/* A lista de itens vai ocupar a largura e altura da tela com centralização */
+.grid-container {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-center;
+}
+
+.card {
+    @apply bg-gradient-to-br from-indigo-500 to-teal-500 p-6 rounded-lg shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 transform;
+}
+
+.card-text {
+    @apply text-lg text-white mb-4;
+}
+
+/* Centralização para carregamento e erro, com fundo cobrindo toda a tela */
+.loading-container,
+.error-container {
+    @apply flex justify-center items-center min-h-screen bg-gray-900;
+}
+
+.error-text {
+    @apply text-red-500 text-xl;
+}
+
+.loading-text {
+    @apply text-gray-500 text-xl;
+}

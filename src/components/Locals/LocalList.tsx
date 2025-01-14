@@ -5,6 +5,8 @@ import ListFetcherService from "../../services/ListFetcherService";
 function LocalList() {
     return (
         <div>
+            <br />
+            <br />
             <ListFetcherService<LocalModel>
                 url={"https://localhost:7159/api/Local"}
                 renderItem={(Local) => (

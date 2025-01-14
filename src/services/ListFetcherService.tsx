@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { GetListProps } from "../models/GetListProps";
+import "../styles/ListStyle.css"
 
 const ListFetcherService = <T,>({ url, renderItem, title }: GetListProps<T>) => {
     const [items, setItems] = useState<T[]>([]);

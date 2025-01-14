@@ -5,6 +5,8 @@ import ListFetcherService from "../../services/ListFetcherService";
 function ParticipantList() {
     return (
         <div>
+            <br />
+            <br />
             <ListFetcherService<ParticipantModel>
                 url={"https://localhost:7159/api/Participant"}
                 renderItem={(Participant) => (

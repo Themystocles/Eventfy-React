@@ -7,9 +7,10 @@ function EventList() {
     return (
         <div>
 
-
+            <br />
+            <br />
             <ListFetcherService<EventModel>
-                url={"https://localhost:7159/api/Event/Event"}
+                url={process.env.REACT_APP_GETLIST_EVENT}
                 renderItem={(event) => (
                     <li key={event.id}>
 

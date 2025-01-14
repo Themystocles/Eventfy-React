@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useState } from 'react';
 import { FormProps } from "../models/FormProps";
 import axios from "axios";
 
@@ -8,7 +7,7 @@ const FormSubmit = <T,>({ url, data, renderResponse, onSuccess, onError }: FormP
     const [response, setResponse] = useState<any>(null);
     const [error, setError] = useState<string | null>(null);
 
-    const handleSubmit = async () => {
+    const sendData = async () => {
         setLoading(true);
         setError(null);
 
@@ -17,15 +16,13 @@ const FormSubmit = <T,>({ url, data, renderResponse, onSuccess, onError }: FormP
             setResponse(result.data);
             setLoading(false);
             if (onSuccess) onSuccess(result.data);
-
         } catch (err: any) {
             setLoading(false);
             setError("Erro ao enviar os dados!");
             if (onError) onError(err);
-
         }
-
     };
+
     return (
         <div>
             {loading && <p>Enviando...</p>}
@@ -35,12 +32,12 @@ const FormSubmit = <T,>({ url, data, renderResponse, onSuccess, onError }: FormP
             ) : (
                 response && <p className="success">Dados enviados com sucesso!... {JSON.stringify(response)}</p>
             )}
-            <button onClick={handleSubmit} disabled={loading}>
-                Enviar
-            </button>
+
+            {!loading && !response && (
+                sendData()
+            )}
         </div>
     );
 };
 
-export default FormSubmit
-
+export default FormSubmit;
