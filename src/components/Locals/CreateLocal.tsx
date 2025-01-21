@@ -59,7 +59,7 @@ function CreateLocal() {
             </form>
             {formData && (
                 <FormSubmit
-                    url="https://localhost:7159/api/Local/CreateLocal"
+                    url={process.env.REACT_APP_CREATE_LOCAL}
                     data={formData}
                     renderResponse={renderResponse}
                     onSuccess={(response) => {

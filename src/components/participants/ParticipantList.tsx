@@ -8,7 +8,7 @@ function ParticipantList() {
             <br />
             <br />
             <ListFetcherService<ParticipantModel>
-                url={"https://localhost:7159/api/Participant"}
+                url={process.env.REACT_APP_GETLIST_PARTICIPANT}
                 renderItem={(Participant) => (
                     <li key={Participant.id}>
                         <h2>{Participant.name}</h2>

@@ -3,15 +3,23 @@ import { useForm } from "react-hook-form";
 import "../../styles/FormStyle.css";
 import FormSubmit from "../../services/FormSubmitService";
 
+import { LocalModel } from "../../models/LocalModel";
+import SelectFetcherService from "../../services/SelectFetcherService";
+
 function CreateEvent() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm();
     const [formData, setFormData] = useState<any>(null);
-    const [submitted, setSubmitted] = useState(false); // Controle de envio
+    const [submitted, setSubmitted] = useState(false);
 
     const onSubmit = async (data: any) => {
-        console.log("Dados enviados:", data);
-        setFormData(data);
-        setSubmitted(true); // Marca como enviado
+        const combinedDateTime = `${data.dateEvent}T${data.timeEvent}`;
+        const formattedData = {
+            ...data,
+            dateEvent: combinedDateTime,
+        };
+        console.log("Dados enviados:", formattedData);
+        setFormData(formattedData);
+        setSubmitted(true);
     };
 
     const renderResponse = (response: any) => {
@@ -20,6 +28,7 @@ function CreateEvent() {
                 <p className="feedback-success text-white">Evento criado com Sucesso:</p>
                 <p className="text-white"><strong>Nome do Evento:</strong> {response.name}</p>
                 <p className="text-white"><strong>Descrição:</strong> {response.description}</p>
+                <p className="text-white"><strong>LocalId:</strong> {response.localId}</p>
             </div>
         );
     };
@@ -59,18 +68,47 @@ function CreateEvent() {
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="location" className="form-label">Localização</label>
-                    <select
-                        id="location"
-                        name="location"
+                    <label htmlFor="dateEvent" className="form-label">Data do evento</label>
+                    <input
+                        id="dateEvent"
+                        type="date"
+                        name="dateEvent"
                         className="form-field"
-                        {...register("location", { required: "Escolha uma localização" })}
-                    >
-                        <option value="" disabled>Escolha um local</option>
-                        <option value="Local 1">Local 1</option>
-                        <option value="Local 2">Local 2</option>
-                    </select>
-                    {errors.location && <p className="error">{errors.location.message}</p>}
+                        placeholder="Insira a data para o Evento"
+                        {...register("dateEvent", { required: "Data e hora são obrigatórios" })}
+                    />
+                    {errors.dateEvent && <p className="error">{errors.dateEvent.message}</p>}
+                </div>
+                <div className="mb-4">
+                    <label htmlFor="timeEvent" className="form-label">Hora do evento</label>
+                    <input
+                        id="timeEvent"
+                        type="time"
+                        name="timeEvent"
+                        className="form-field"
+                        placeholder="Insira a Hora para o Evento"
+                        {...register("timeEvent", { required: "Data e hora são obrigatórios" })}
+                    />
+                    {errors.timeEvent && <p className="error">{errors.timeEvent.message}</p>}
+                </div>
+
+
+
+                <div className="mb-4">
+                    <label htmlFor="localId" className="form-label">Localização</label>
+                    {/* Usando SelectFetcherService dentro do select */}
+                    <SelectFetcherService<LocalModel>
+                        url="https://localhost:7159/api/Local"
+                        renderItem={(local) => local.endereco} // Exibe o endereço do local
+                        onChange={(e) => {
+                            const selectedValue = parseInt(e.target.value, 10);  // Converte para número
+                            setValue("localId", selectedValue);  // Atualiza o valor de location no form
+                        }}
+                        placeholder="Escolha um local"
+                        title=""
+                    />
+                    {errors.localId && <p className="error">{errors.localId.message}</p>}
+
                 </div>
 
                 <button type="submit" className="form-button">

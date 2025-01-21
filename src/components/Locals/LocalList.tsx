@@ -8,7 +8,7 @@ function LocalList() {
             <br />
             <br />
             <ListFetcherService<LocalModel>
-                url={"https://localhost:7159/api/Local"}
+                url={process.env.REACT_APP_GETLIST_LOCAL}
                 renderItem={(Local) => (
                     <li key={Local.id}>
                         <h2>{Local.endereco}</h2>

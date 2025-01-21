@@ -16,6 +16,7 @@ function EventById() {
                         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%" }}>
                             <h3>{Event.name}</h3>
                             <p>{Event.description}</p>
+                            <p>{Event.dateEvent}</p>
                             <br />
                             <br />
                             <Link to="/CreateEvent">

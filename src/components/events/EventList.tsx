@@ -16,6 +16,10 @@ function EventList() {
 
                         <h2>{event.name}</h2>
                         <p>{event.description}</p>
+                        <p>{event.dateEvent}</p>
+                        <h2>LOCAL</h2>
+                        <h2>{event.local?.endereco}</h2>
+                        <p></p>
                         <br />
                         <Link to={`/api/Event/Event/${event.id}`}><button className="px-6 py-3 bg-white text-gray-900 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200">
                             Ver Mais
