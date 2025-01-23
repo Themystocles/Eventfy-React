@@ -10,14 +10,9 @@ function UpdateParticipant() {
     const { register, handleSubmit, formState: { errors } } = useForm<ParticipantModel>();
     const [formData, setFormData] = useState<ParticipantModel | null>(null);
 
-
-
     const onSubmit = (data: ParticipantModel) => {
-        const dataWithId = { ...data, id: id };
-        setFormData(dataWithId);
-
+        setFormData(data);
     };
-
     return (
         <div>
             {id && (
@@ -30,20 +25,8 @@ function UpdateParticipant() {
                             <h1 className="form-title">
                                 Editar <span>Participante</span>
                             </h1>
-
                             <form onSubmit={handleSubmit(onSubmit)}>
-                                <div className="mb-4">
-                                    <label htmlFor="id" className="form-label">id</label>
-                                    <input
-                                        id="id"
-                                        type="number"
-                                        name="id"
-                                        className="form-field"
-                                        value={Participant.id}
 
-                                        {...register("id", { required: "id é obrigatório" })} />
-                                    {errors.name && <p className="error">{errors.name.message}</p>}
-                                </div>
                                 <div className="mb-4">
                                     <label htmlFor="name" className="form-label">Nome do Participante</label>
                                     <input

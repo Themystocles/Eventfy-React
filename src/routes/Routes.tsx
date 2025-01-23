@@ -12,6 +12,7 @@ import CreateParticipant from '../components/participants/CreateParticipant';
 import CreateLocal from '../components/Locals/CreateLocal';
 import UpdateParticipant from '../components/participants/UpdateParticipant';
 import UpdateLocal from '../components/Locals/UpdateLocals';
+import UpdateEvent from '../components/events/UpdateEvent';
 
 
 function AppRoutes() {
@@ -21,6 +22,7 @@ function AppRoutes() {
             <Route path='EventList' element={<EventList />} />
             <Route path="/api/Event/Event/:id" element={<EventById />} />
             <Route path='CreateEvent' element={<CreateEvent />} />
+            <Route path='UpdatEvent/:id' element={<UpdateEvent />} />
             <Route path='ParticipantList' element={<ParticipantList />} />
             <Route path="/api/Participant/Participant/:id" element={<ParticipantById />} />
             <Route path="/api/Participant/Participant/:id" element={<UpdateParticipant />} />

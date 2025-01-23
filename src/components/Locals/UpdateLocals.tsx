@@ -11,9 +11,7 @@ function UpdateLocal() {
     const [formData, setFormData] = useState<LocalModel | null>(null);
 
     const onSubmit = (data: LocalModel) => {
-        const dataWithId = { ...data, id: id };
-        setFormData(dataWithId);
-
+        setFormData(data);
     };
     return (
         <div>
@@ -74,8 +72,6 @@ function UpdateLocal() {
 
 
                         </section>
-
-
                     )}
                 />
             )}

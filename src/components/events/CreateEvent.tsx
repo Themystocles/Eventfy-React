@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "../../styles/FormStyle.css";
 import FormSubmit from "../../services/FormSubmitService";
-
 import { LocalModel } from "../../models/LocalModel";
 import SelectFetcherService from "../../services/SelectFetcherService";
 
