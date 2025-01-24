@@ -7,5 +7,6 @@ export interface EventModel {
     dateEvent: Date;
     localId: number
     local?: LocalModel
+    timeEvent: string
 
 }

@@ -3,16 +3,25 @@ import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import ItemFetcher from "../../services/ItemFetcherService";
 import DataUpdate from "../../services/DataUpdaterService";
-import { ParticipantModel } from "../../models/ParticipantModel";
 import { EventModel } from "../../models/EventModel";
+import SelectFetcherService from "../../services/SelectFetcherService";
+import { LocalModel } from "../../models/LocalModel";
 
 function UpdateEvent() {
     const { id } = useParams<{ id: string }>();
-    const { register, handleSubmit, formState: { errors } } = useForm<EventModel>();
-    const [formData, setFormData] = useState<ParticipantModel | null>(null);
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm<EventModel>();
+    const [formData, setFormData] = useState<EventModel | null>(null);
+
 
     const onSubmit = (data: EventModel) => {
-        setFormData(data);
+        const combinedDatetime = `${data.dateEvent}T${data.timeEvent}`;
+        const formattedData = {
+            ...data,
+            dateEvent: combinedDatetime
+        }
+        console.log("dados enviados:", formattedData);
+        setFormData(formattedData);
+
     };
     return (
         <div>
@@ -20,11 +29,11 @@ function UpdateEvent() {
                 <ItemFetcher<EventModel>
                     url={process.env.REACT_APP_GETBYID_EVENT}
                     id={id}
-                    title="Participante"
+                    title="Evento"
                     renderItem={(Event) => (
                         <section>
                             <h1 className="form-title">
-                                Editar <span>Evento</span>
+                                Editar detalhes do <span>Evento</span>
                             </h1>
                             <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -41,7 +50,7 @@ function UpdateEvent() {
                                     {errors.name && <p className="error">{errors.name.message}</p>}
                                 </div>
                                 <div className="mb-4">
-                                    <label htmlFor="descricao" className="form-label">Descrição do evento</label>
+                                    <label htmlFor="description" className="form-label">Descrição do evento</label>
                                     <input
                                         id="description"
                                         type="text"
@@ -60,11 +69,41 @@ function UpdateEvent() {
                                         type="date"
                                         name="dateEvent"
                                         className="form-field"
-                                        defaultValue={Event.dateEvent}
+                                        defaultValue={Event.dateEvent ? new Date(Event.dateEvent).toISOString().split("T")[0] : ""}
                                         placeholder="Insira a data do Event"
-                                        {...register("description", { required: "a data do evento é obrigatória" })} />
+                                        {...register("dateEvent", { required: "a data do evento é obrigatória" })} />
                                     {errors.dateEvent && <p className="error">{errors.dateEvent.message}</p>}
                                 </div>
+
+                                <div className="mb-4">
+                                    <label htmlFor="timeEvent" className="form-label">Hora do evento</label>
+                                    <input
+                                        id="timeEvent"
+                                        type="time"
+                                        name="timeEvent"
+                                        className="form-field"
+                                        defaultValue={Event.dateEvent ? new Date(Event.dateEvent).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : ""}
+                                        placeholder="Insira a data do Event"
+                                        {...register("timeEvent", { required: "a data do evento é obrigatória" })} />
+                                    {errors.timeEvent && <p className="error">{errors.timeEvent.message}</p>}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label htmlFor="local" className="form-label">Local do evento</label>
+                                    <SelectFetcherService<LocalModel>
+                                        url="https://localhost:7159/api/Local"
+                                        renderItem={(local) => local.endereco}
+                                        onChange={(e) => {
+                                            const selectedValue = parseInt(e.target.value, 10);
+                                            setValue("localId", selectedValue)
+                                        }}
+
+                                        placeholder="Escolha um local"
+                                        title=""
+                                    />
+                                </div>
+
+
 
 
 
@@ -80,10 +119,10 @@ function UpdateEvent() {
                                     id={id}
                                     data={formData}
                                     onSuccess={(response) => {
-                                        console.log("Particiant criado com sucesso:", response);
+                                        console.log("Evenyo criado com sucesso:", response);
                                     }}
                                     onError={(error) => {
-                                        console.error("Erro ao criar Participant:", error);
+                                        console.error("Erro ao criar evento:", error);
                                     }}
                                 />
                             )}

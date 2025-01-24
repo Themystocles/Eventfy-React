@@ -35,6 +35,7 @@ const SelectFetcherService = <T,>({ url, renderItem, onChange, placeholder = "Es
                 <option key={index} value={(item as any).id}>
                     {renderItem(item)}
                 </option>
+
             ))}
         </select>
     );
