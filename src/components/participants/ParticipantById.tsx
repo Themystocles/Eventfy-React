@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import ItemFetcher from "../../services/ItemFetcherService";
 import { ParticipantModel } from "../../models/ParticipantModel";
+import DataDelete from "../../services/ItemDeleterService";
 
 function ParticipantById() {
     const { id } = useParams<{ id: string }>();
@@ -29,6 +30,13 @@ function ParticipantById() {
                                     Editar participant
                                 </button>
                             </Link>
+                            <br />
+                            <DataDelete
+                                url="https://localhost:7159/api/Participant/Deletar/Participant"
+                                id={Participant.id}
+                            />
+
+
 
                         </div>
                     )}
@@ -36,12 +44,16 @@ function ParticipantById() {
                 />
 
 
+
             )}
 
 
         </div>
 
+
+
     )
+
 }
 
 
