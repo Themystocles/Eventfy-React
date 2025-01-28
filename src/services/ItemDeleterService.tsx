@@ -9,6 +9,9 @@ const DataDelete = ({ url, id }: DeleteProps) => {
 
 
     const deleteItem = async () => {
+        if (!window.confirm("Tem certeza de que deseja deletar este ítem?")) {
+            return;
+        }
         setLoading(true);
         setError(null)
 
@@ -16,6 +19,10 @@ const DataDelete = ({ url, id }: DeleteProps) => {
             const result = await axios.delete(`${url}/${id}`);
             setLoading(false);
             setDeleted(true);
+
+            setTimeout(() => {
+                window.location.href = "http://localhost:3000/";
+            }, 3000)
         } catch (err: any) {
             setLoading(false);
             setError("Erro ao enviar os dados!");
@@ -25,9 +32,32 @@ const DataDelete = ({ url, id }: DeleteProps) => {
     return (
         <div>
             {loading && <p>Aguarde...</p>}
-            {error && <p className="error">{error}</p>}
-            {deleted && (<p className="success"> Dados Deletados com sucesso!!! </p>)}
-            <button onClick={deleteItem} disabled={loading}>
+            {error && <p className="feedback-error">{error}</p>}
+
+            {/* Modal para sucesso */}
+            {deleted && (
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-80">
+                    <div className="form-box">
+                        <h2 className="text-2xl font-semibold text-gray-200 mb-4">
+                            Sucesso!
+                        </h2>
+                        <p className="text-gray-200 mb-6">
+                            Os dados foram deletados com sucesso. Você será redirecionado em breve.
+                        </p>
+                        <button
+                            className="form-button"
+                            onClick={() =>
+                            (window.location.href =
+                                "http://localhost:3000/")
+                            }
+                        >
+                            Redirecionar agora
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            <button className="delete-button" onClick={deleteItem} disabled={loading}>
                 {loading ? "Deletando..." : "Deletar"}
             </button>
         </div>

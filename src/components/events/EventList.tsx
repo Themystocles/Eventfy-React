@@ -25,6 +25,8 @@ function EventList() {
                             Ver Mais
                         </button>
                         </Link>
+                        <br />
+                        <Link to={`/EventParticipants/${event.id}`}>Participantes do <span className="text-indigo-700">Evento</span></Link>
 
                     </li>
 

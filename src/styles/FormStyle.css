@@ -31,6 +31,14 @@
     @apply bg-gray-600 cursor-not-allowed;
 }
 
+.delete-button {
+    @apply w-full py-3 px-4 rounded-lg text-white font-semibold transition-all duration-300 transform bg-red-600 hover:bg-red-700 hover:scale-105;
+}
+
+.delete-button-disabled {
+    @apply bg-gray-500 cursor-not-allowed;
+}
+
 .feedback-loading {
     @apply text-gray-200 text-center mt-4 animate-pulse;
 }
