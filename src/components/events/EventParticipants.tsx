@@ -1,49 +1,57 @@
-import React from 'react';
+import React, { useState } from "react";
 import ListFetcherService from '../../services/ListFetcherService';
 import { EventModel } from '../../models/EventModel';
 import { Link, useParams } from 'react-router-dom';
 import ItemFetcher from '../../services/ItemFetcherService';
 import DataDelete from '../../services/ItemDeleterService';
+import { ParticipantModel } from '../../models/ParticipantModel';
 
 function EventParticipants() {
     const { id } = useParams<{ id: string }>();
+    const [participantExist, setParticipantExist] = useState(false);
     return (
         <div>
+            <ItemFetcher<EventModel>
+                url={process.env.REACT_APP_GETBYID_EVENT}
+                id={id}
+                title='Evento'
+                renderItem={(Event) => (
+                    <div>
+                        <h3>{Event.name}</h3>
+                        <p>{Event.description}</p>
+                        <p>{Event.dateEvent}</p>
+                        <p>{Event.local}</p>
+                    </div>
+                )}
+            />
             {id && (
-                <ItemFetcher<EventModel>
-                    url={process.env.REACT_APP_GETBYID_EVENT}
-                    id={id}
-                    renderItem={(Event) => (
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                height: "100%",
-                            }}
-                        >
-                            <h3>{Event.name}</h3>
-                            <p>{Event.description}</p>
-                            <p>{Event.dateEvent}</p>
-                            <br />
-                            <div
-                                style={{
-                                    display: "flex",
-                                    gap: "1rem",
-                                    justifyContent: "center",
-                                }}
-                            >
+                <ListFetcherService<ParticipantModel>
+                    url={`https://localhost:7159/Participants/${id}`}
+                    renderItem={(Participant) => (
 
-                            </div>
+
+                        < div >
+                            <h3>{Participant.name}</h3>
+                            <p>{Participant.email}</p>
+
 
                         </div>
-                    )}
-                    title="Evento"
+
+
+                    )
+                    }
+                    title="Participantes Deste Evento"
+
+
                 />
+
+
             )}
-        </div>
+
+        </div >
     );
 }
 
 export default EventParticipants;
+
+

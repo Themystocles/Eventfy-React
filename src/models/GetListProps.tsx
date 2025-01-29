@@ -6,4 +6,5 @@ export interface GetListProps<T> {
     title: string
 
 
+
 }
