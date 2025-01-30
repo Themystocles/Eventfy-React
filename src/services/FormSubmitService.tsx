@@ -29,6 +29,7 @@ const FormSubmit = <T,>({ url, data, renderResponse, onSuccess, onError }: FormP
                 if (onError) onError(err);
             }
         };
+
         sendData();
     }, [data]);
 

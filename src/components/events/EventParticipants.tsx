@@ -8,7 +8,7 @@ import { ParticipantModel } from '../../models/ParticipantModel';
 
 function EventParticipants() {
     const { id } = useParams<{ id: string }>();
-    const [participantExist, setParticipantExist] = useState(false);
+
     return (
         <div>
             <ItemFetcher<EventModel>

@@ -14,6 +14,7 @@ import UpdateParticipant from '../components/participants/UpdateParticipant';
 import UpdateLocal from '../components/Locals/UpdateLocals';
 import UpdateEvent from '../components/events/UpdateEvent';
 import EventParticipants from '../components/events/EventParticipants';
+import PostParticipantInEvent from '../components/eventParticipant/PostParticipantInEvent';
 
 
 function AppRoutes() {
@@ -34,6 +35,7 @@ function AppRoutes() {
             <Route path='editar/local/:id' element={<UpdateLocal />} />
             <Route path='CreateLocal' element={<CreateLocal />} />
             <Route path='EventParticipants/:id' element={<EventParticipants />} />
+            <Route path='EventParticipants/:eventId/:participantId' element={<PostParticipantInEvent />} />
         </Routes>
     );
 }

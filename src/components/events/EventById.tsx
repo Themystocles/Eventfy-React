@@ -42,6 +42,7 @@ function EventById() {
                                         Editar Evento
                                     </button>
                                 </Link>
+
                             </div>
                             <br />
                             <DataDelete
