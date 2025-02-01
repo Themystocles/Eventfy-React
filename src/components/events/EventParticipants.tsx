@@ -3,7 +3,6 @@ import ListFetcherService from '../../services/ListFetcherService';
 import { EventModel } from '../../models/EventModel';
 import { Link, useParams } from 'react-router-dom';
 import ItemFetcher from '../../services/ItemFetcherService';
-import DataDelete from '../../services/ItemDeleterService';
 import { ParticipantModel } from '../../models/ParticipantModel';
 
 function EventParticipants() {
@@ -17,10 +16,16 @@ function EventParticipants() {
                 title='Evento'
                 renderItem={(Event) => (
                     <div>
+                        <img
+                            src="https://academy.4.events/pt-br/wp-content/uploads/2021/05/eventos-coporativo-telao-1024x576.jpg"
+                            alt="Evento"
+                            className="w-full h-48 object-cover mb-4 rounded"
+                        />
                         <h3>{Event.name}</h3>
                         <p>{Event.description}</p>
                         <p>{Event.dateEvent}</p>
                         <p>{Event.local}</p>
+
                     </div>
                 )}
             />

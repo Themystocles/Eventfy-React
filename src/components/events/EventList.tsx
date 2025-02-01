@@ -13,6 +13,11 @@ function EventList() {
                 url={process.env.REACT_APP_GETLIST_EVENT}
                 renderItem={(event) => (
                     <li key={event.id}>
+                        <img
+                            src="https://academy.4.events/pt-br/wp-content/uploads/2021/05/eventos-coporativo-telao-1024x576.jpg"
+                            alt="Evento"
+                            className="w-full h-48 object-cover mb-4 rounded"
+                        />
 
                         <h2>{event.name}</h2>
                         <p>{event.description}</p>
