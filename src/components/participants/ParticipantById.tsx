@@ -49,6 +49,11 @@ function ParticipantById() {
                                         Editar Participante
                                     </button>
                                 </Link>
+                                <Link to={`/EventByParticipants/${participant.id}`}>
+                                    <button className="px-10 py-4 border-2 border-white text-white rounded-lg shadow-lg hover:bg-yellow-600 hover:shadow-xl transition duration-300">
+                                        Meus Eventos
+                                    </button>
+                                </Link>
 
                                 <button
                                     onClick={() => { setParticiparEvent(true); setdetalhesParticipant(false); }}

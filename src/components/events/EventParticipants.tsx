@@ -32,18 +32,14 @@ function EventParticipants() {
             {id && (
                 <ListFetcherService<ParticipantModel>
                     url={`https://localhost:7159/Participants/${id}`}
-                    renderItem={(Participant) => (
-
+                    renderItem={(Participant) =>
 
                         < div >
                             <h3>{Participant.name}</h3>
                             <p>{Participant.email}</p>
-
-
                         </div>
 
 
-                    )
                     }
                     title="Participantes Deste Evento"
 
