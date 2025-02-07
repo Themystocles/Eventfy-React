@@ -11,7 +11,10 @@ function EventsByParticipantId() {
 
         <div>
 
+
+
             {participantId && (
+
                 <ListFetcherService<EventModel>
                     url={`https://localhost:7159/Event/${participantId}`}
                     renderItem={(events) =>
@@ -19,23 +22,34 @@ function EventsByParticipantId() {
                         <li>
                             <h2>{events.name}</h2>
                             <p>{events.description}</p>
+                            <br />
+                            <Link to={`/EventParticipants/${events.id}/${participantId}/delete`}>
+
+                                <button className="mt-2 px-4 py-2 bg-red-500 text-white font-bold rounded-md shadow-md hover:bg-red-600 transition">
+                                    Cancelar Inscrição
+                                </button>
+
+                            </Link>
+
                         </li>
-
-
 
 
 
                     }
 
-                    title="Eventos inscrito"
+                    title="Eventos inscritos"
                 />
 
 
+
             )}
-            <Link>
-                <button>Cancelar inscrição</button>
-            </Link>
+
+
+
+
+
         </div>
+
     );
 }
 

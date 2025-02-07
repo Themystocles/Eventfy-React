@@ -16,6 +16,7 @@ import UpdateEvent from '../components/events/UpdateEvent';
 import EventParticipants from '../components/events/EventParticipants';
 import PostParticipantInEvent from '../components/eventParticipant/PostParticipantInEvent';
 import EventsByParticipantId from '../components/participants/EventsByParticipantId';
+import DeleteEventParticipant from '../components/participants/DeleteEventParticipant';
 
 
 function AppRoutes() {
@@ -38,6 +39,9 @@ function AppRoutes() {
             <Route path='EventParticipants/:id' element={<EventParticipants />} />
             <Route path='EventParticipants/:eventId/:participantId' element={<PostParticipantInEvent />} />
             <Route path='EventByParticipants/:participantId' element={<EventsByParticipantId />} />
+            <Route path='EventParticipants/:eventId/:participantId/delete' element={<DeleteEventParticipant />} />
+
+
 
 
         </Routes>
