@@ -95,13 +95,13 @@ function CreateEvent() {
 
                 <div className="mb-4">
                     <label htmlFor="localId" className="form-label">Localização</label>
-                    {/* Usando SelectFetcherService dentro do select */}
+
                     <SelectFetcherService<LocalModel>
-                        url="https://localhost:7159/api/Local"
-                        renderItem={(local) => local.endereco} // Exibe o endereço do local
+                        url={process.env.REACT_APP_GETLIST_LOCAL}
+                        renderItem={(local) => local.endereco}
                         onChange={(e) => {
-                            const selectedValue = parseInt(e.target.value, 10);  // Converte para número
-                            setValue("localId", selectedValue);  // Atualiza o valor de location no form
+                            const selectedValue = parseInt(e.target.value, 10);
+                            setValue("localId", selectedValue);
                         }}
                         placeholder="Escolha um local"
                         title=""

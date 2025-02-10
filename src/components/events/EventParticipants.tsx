@@ -31,7 +31,7 @@ function EventParticipants() {
             />
             {id && (
                 <ListFetcherService<ParticipantModel>
-                    url={`https://localhost:7159/Participants/${id}`}
+                    url={`${process.env.REACT_APP_GETBYID_PARTICIPANTSEVENT}/${id}`}
                     renderItem={(Participant) =>
 
                         < div >

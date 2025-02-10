@@ -11,12 +11,14 @@ function ParticipantList() {
                 url={process.env.REACT_APP_GETLIST_PARTICIPANT}
                 renderItem={(Participant) => (
                     <li key={Participant.id}>
-                        <h2>{Participant.name}</h2>
-                        <p>{Participant.email}</p>
+                        <h2 className="text-2xl font-extrabold text-indigo-100 uppercase">{Participant.name}</h2>
+                        <h2 className="text-lg font-bold text-indigo-300 mt-2">E-mail:</h2>
+                        <p className="text-white">{Participant.email}</p>
                         <br />
-                        <Link to={`/api/Participant/Participant/${Participant.id}`}><button className="px-6 py-3 bg-white text-gray-900 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200">
-                            Ver Mais
-                        </button>
+                        <Link to={`/api/Participant/Participant/${Participant.id}`}>
+                            <button className="px-6 py-3 w-full bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105">
+                                🔍 Ver Mais
+                            </button>
                         </Link>
 
                     </li>

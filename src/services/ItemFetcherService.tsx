@@ -49,22 +49,23 @@ const ItemFetcher = <T extends object>({ url, id, renderItem, title }: GetItemPr
     return (
         <div className="min-h-screen bg-gray-900 text-white flex flex-col justify-center py-12">
             <div className="max-w-4xl mx-auto px-6 md:px-12">
-                <h2 className="text-4xl font-semibold text-center text-gray-200 mb-12">
+                <h2 className="text-4xl font-semibold text-center text-gray-200 mb-8">
                     Detalhes do <span className="text-indigo-400">{title}</span>
                 </h2>
-                <div className="bg-gradient-to-br from-indigo-500 to-teal-500 p-8 rounded-lg shadow-md">
-                    <div className="text-lg text-white">
-                        {renderItem(item)}
-                    </div>
+
+                <div className="bg-gray-800 p-8 rounded-2xl shadow-xl">
+                    <div className="text-lg text-white">{renderItem(item)}</div>
                 </div>
-                <div className="mt-8 text-center">
+
+                {/* Botões estilizados */}
+                <div className="mt-8 flex justify-center gap-4">
                     <button
-                        className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-4 rounded shadow-md transition-all duration-300"
+                        className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all"
                         onClick={() => window.history.back()}
                     >
                         Voltar
                     </button>
-                    <br />
+
 
                 </div>
             </div>

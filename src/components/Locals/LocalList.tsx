@@ -11,12 +11,14 @@ function LocalList() {
                 url={process.env.REACT_APP_GETLIST_LOCAL}
                 renderItem={(Local) => (
                     <li key={Local.id}>
-                        <h2>{Local.endereco}</h2>
+                        <h2 className="text-2xl font-extrabold text-indigo-100 uppercase">{Local.endereco}</h2>
+                        <h2 className="text-lg font-bold text-indigo-300 mt-2">Número:</h2>
                         <p>{Local.capacidade}</p>
                         <br />
-                        <Link to={`/api/Local/Local/${Local.id}`}><button className="px-6 py-3 bg-white text-gray-900 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200">
-                            Ver Mais
-                        </button>
+                        <Link to={`/api/Local/Local/${Local.id}`}>
+                            <button className="px-6 py-3 w-full bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105">
+                                🔍 Ver Mais
+                            </button>
                         </Link>
                     </li>
                 )}

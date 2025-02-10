@@ -19,19 +19,29 @@ function EventList() {
                             className="w-full h-48 object-cover mb-4 rounded"
                         />
 
-                        <h2>{event.name}</h2>
+                        <h2 className="text-2xl font-extrabold text-indigo-600 uppercase">{event.name}</h2>
+                        <h2 className="text-lg font-bold text-indigo-300">Descrição do Evento:</h2>
                         <p>{event.description}</p>
-                        <p>{event.dateEvent}</p>
-                        <h2>LOCAL</h2>
+                        <h2 className="text-lg font-bold text-indigo-300">Data e horário:</h2>
+                        <p>{new Date(event.dateEvent).toLocaleString('pt-BR')}</p>
+                        <h2 className="text-lg font-bold text-indigo-300">Local do Evento:</h2>
                         <h2>{event.local?.endereco}</h2>
                         <p></p>
                         <br />
-                        <Link to={`/api/Event/Event/${event.id}`}><button className="px-6 py-3 bg-white text-gray-900 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200">
-                            Ver Mais
-                        </button>
+                        <Link to={`/api/Event/Event/${event.id}`}>
+                            <button className="px-6 py-3 w-full bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105">
+                                🔍 Ver Mais
+                            </button>
                         </Link>
-                        <br />
-                        <Link to={`/EventParticipants/${event.id}`}>Participantes do <span className="text-indigo-700">Evento</span></Link>
+
+                        <br /><br />
+
+                        <Link to={`/EventParticipants/${event.id}`}>
+                            <button className="px-6 py-3 w-full bg-indigo-400 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-500 transition duration-300 ease-in-out transform hover:scale-105">
+                                👥 Participantes do Evento
+                            </button>
+                        </Link>
+
 
                     </li>
 

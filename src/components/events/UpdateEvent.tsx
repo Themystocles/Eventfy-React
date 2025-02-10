@@ -91,7 +91,7 @@ function UpdateEvent() {
                                 <div className="mb-4">
                                     <label htmlFor="local" className="form-label">Local do evento</label>
                                     <SelectFetcherService<LocalModel>
-                                        url="https://localhost:7159/api/Local"
+                                        url={process.env.REACT_APP_GETLIST_LOCAL}
                                         renderItem={(local) => local.endereco}
                                         onChange={(e) => {
                                             const selectedValue = parseInt(e.target.value, 10);
