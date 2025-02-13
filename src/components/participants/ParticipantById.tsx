@@ -10,6 +10,7 @@ function ParticipantById() {
     const { id } = useParams<{ id: string }>();
     const [participarEvent, setParticiparEvent] = useState(false);
     const [detalhesParticipant, setdetalhesParticipant] = useState(true);
+    const [deleteButton, setDeletebutton] = useState(false)
 
     return (
         <div>
@@ -61,13 +62,18 @@ function ParticipantById() {
                                 >
                                     Participar de um evento
                                 </button>
+
+
                             </div>
 
                             <br />
-                            <DataDelete
-                                url="https://localhost:7159/api/Participant/Deletar/Participant"
+                            <button onClick={() => { setDeletebutton(true); }}> Deletar Participant</button>
+                            {deleteButton && <DataDelete
+                                url={process.env.REACT_APP_DELETE_PARTICIPANT}
                                 id={participant.id}
-                            />
+                                title="Você está prestes a excluir este participant deseja confirmar?"
+                            />}
+
                         </div>
                     )}
                     title="Detalhes do Participante"

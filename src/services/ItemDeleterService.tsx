@@ -2,16 +2,15 @@ import axios from "axios";
 import { DeleteProps } from "../models/DeletProps";
 import React, { useState, useEffect, useRef } from "react";
 
-const DataDelete = ({ url, id }: DeleteProps) => {
+const DataDelete = ({ url, id, title }: DeleteProps) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [deleted, setDeleted] = useState(false)
 
 
+
     const deleteItem = async () => {
-        if (!window.confirm("Tem certeza de que deseja deletar este ítem?")) {
-            return;
-        }
+
         setLoading(true);
         setError(null)
 
@@ -58,7 +57,7 @@ const DataDelete = ({ url, id }: DeleteProps) => {
             )}
 
             <button className="delete-button" onClick={deleteItem} disabled={loading}>
-                {loading ? "Deletando..." : "Deletar"}
+                {loading ? "Deletando..." : title}
             </button>
         </div>
     );

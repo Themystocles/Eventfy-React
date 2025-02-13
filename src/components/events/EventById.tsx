@@ -48,6 +48,7 @@ function EventById() {
                             <DataDelete
                                 url={process.env.REACT_APP_DELETE_EVENT}
                                 id={Event.id}
+                                title=""
                             />
                         </div>
                     )}

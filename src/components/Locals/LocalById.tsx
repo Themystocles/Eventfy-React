@@ -49,6 +49,7 @@ function LocalById() {
                             <DataDelete
                                 url="https://localhost:7159/api/Local/DeleteLocal"
                                 id={Local.id}
+                                title="a"
                             />
                         </div>
                     )}

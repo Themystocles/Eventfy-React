@@ -16,7 +16,7 @@ function EventsByParticipantId() {
             {participantId && (
 
                 <ListFetcherService<EventModel>
-                    url={`https://localhost:7159/Event/${participantId}`}
+                    url={`${process.env.REACT_APP_GET_EVENTBYPARTICIPANTID}/${participantId}`}
                     renderItem={(events) =>
 
                         <li>

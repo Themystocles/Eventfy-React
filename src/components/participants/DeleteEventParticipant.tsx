@@ -7,12 +7,16 @@ import DataDelete from "../../services/ItemDeleterService";
 function DeleteEventParticipant() {
     const { eventId, participantId } = useParams<{ eventId: string; participantId: string }>();
     const [participantData, setParticipantData] = useState<EventParticipantModel | null>(null);
+    const [confirmParticipacao, setConfirmParticipacao] = useState(true)
 
     function submit() {
         console.log("Botão clicado!", { eventId }, { participantId });
+        setConfirmParticipacao(false)
         const participantDataok = {
             eventId: Number(eventId),
             participantId: Number(participantId),
+
+
         };
         setParticipantData(participantDataok);
     }
@@ -25,19 +29,19 @@ function DeleteEventParticipant() {
                 <p className="mb-4 text-gray-300">Você está prestes a confirmar sua Exclusão de participação no evento.</p>
                 {eventId && participantId && participantData && (
                     <DataDelete
-                        url={`https://localhost:7159/Eventparticipant/${eventId}`}
+                        url={`${process.env.REACT_APP_DELETE_EVENTPARTICIPANT}/${eventId}`}
                         id={participantId}
-
-
-
+                        title="Confirma o cancelamento da incrição para este evento"
                     />
                 )}
-                <button
+
+                {confirmParticipacao && <button
                     onClick={submit}
                     className="mt-6 px-6 py-3 border-2 border-green-400 text-green-400 rounded-lg shadow-lg hover:bg-green-400 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-green-300 transition duration-300 transform hover:scale-105"
                 >
                     Confirmar Exclusão de participação
-                </button>
+                </button>}
+
             </div>
         </div>
     );
